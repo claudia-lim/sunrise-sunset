@@ -1,19 +1,19 @@
 import {useEffect, useState} from "react";
 
-function Output ({geoLocJson, sunrise, sunset, setSunset, setSunrise}) {
+function Output ({geoLocJson, sunrise, sunset, setSunset, setSunrise, sunriseSunsetData, setSunriseSunsetData}) {
 
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
     const [city, setCity] = useState("");
-    const [sunriseSunsetData, setSunriseSunsetData] = useState({});
-
+    const sunriseTime = new Date(sunrise);
+    const sunsetTime = new Date(sunset);
 
     useEffect(() => {
         if (!geoLocJson.initial && geoLocJson.results[0].locations[0].adminArea5){
             setLatitude(geoLocJson.results[0].locations[0].latLng.lat);
             setLongitude(geoLocJson.results[0].locations[0].latLng.lng);
             setCity(geoLocJson.results[0].locations[0].adminArea5);
-            // fetchSunriseSunset();
+
         } else if (geoLocJson.initial){
             setCity("");
         } else {
@@ -24,6 +24,17 @@ function Output ({geoLocJson, sunrise, sunset, setSunset, setSunrise}) {
 
     }, [geoLocJson]);
 
+    useEffect(() => {
+        fetchSunriseSunset();
+    }, [latitude, longitude]);
+
+    useEffect(() => {
+        console.log('time use effect called');
+        if (!sunriseSunsetData.initial) {
+            setSunrise(sunriseSunsetData.results.sunrise);
+            setSunset(sunriseSunsetData.results.sunset);
+        }
+    }, [sunriseSunsetData]);
 
     async function fetchSunriseSunset () {
         const customSettings = {
@@ -33,12 +44,12 @@ function Output ({geoLocJson, sunrise, sunset, setSunset, setSunrise}) {
             },
         };
         const response = await fetch(
-            `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}`,
+            `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&formatted=0`,
             customSettings
         );
         const sunriseSunsetJson = await response.json();
         if (sunriseSunsetJson.status === "OK") {
-            setSunriseSunsetData(sunriseSunsetData)
+            setSunriseSunsetData(sunriseSunsetJson);
         } else {
             console.log('error');
         }
@@ -49,8 +60,8 @@ function Output ({geoLocJson, sunrise, sunset, setSunset, setSunrise}) {
             <p>{city}</p>
             <p>Latitude = {latitude}</p>
             <p>Longitude = {longitude}</p>
-            <p>Sunrise: {sunrise}</p>
-            <p>Sunset: {sunset}</p>
+            <p>Sunrise: {sunriseTime.toTimeString()}</p>
+            <p>Sunset: {sunsetTime.toTimeString()}</p>
         </div>
     )
 }

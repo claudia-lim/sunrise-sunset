@@ -4,7 +4,6 @@ import InputForm from "./Components/InputForm/index.jsx";
 import Output from "./Components/Output/index.jsx";
 import ToggleButton from "./Components/ToggleButton/index.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
 
 function App() {
@@ -12,9 +11,10 @@ function App() {
     const [input, setInput] = useState("");
     const [geoLocJson, setGeoLocJson] = useState({initial:true})
     const [mode, setMode] = useState("day");
-    const [icon, setIcon] = useState("faSun")
-    const [sunrise, setSunrise] = useState("2024-01-04T05:05:35+00:00");
-    const [sunset, setSunset] = useState("2024-01-04T19:22:59+00:00");
+    const [sunrise, setSunrise] = useState("");
+    const [sunset, setSunset] = useState("");
+    const [sunriseSunsetData, setSunriseSunsetData] = useState({initial:true});
+    console.log('sunrise sunset data - rendering of app.jsx', sunriseSunsetData);
     const key = "HQNofba0fy6MwKlkN0KGrlB2Hj88KqTM";
 
     async function fetchGeoLocation () {
@@ -30,23 +30,8 @@ function App() {
         );
         const geoLocData = await response.json();
         setGeoLocJson(geoLocData);
+        console.log('geolocdata', geoLocData);
     }
-
-    useEffect(() => {
-const sunriseTime = new Date(sunrise);
-const sunsetTime = new Date(sunset);
-const current = new Date("2024-01-04T21:22:59+00:00");
-console.log(current);
-console.log(sunriseTime);
-console.log(sunsetTime);
-if (current > sunsetTime || current < sunriseTime) {
-    setMode("night");
-    setIcon("faMoon");
-} else {
-    setMode("day");
-    setIcon("faSun");
-}
-    }, [geoLocJson]);
 
     return (
     <>
@@ -61,7 +46,7 @@ if (current > sunsetTime || current < sunriseTime) {
 
             <InputForm input={input} setInput={setInput} fetchGeoLocation={fetchGeoLocation}/>
             <Output geoLocJson={geoLocJson} sunrise={sunrise} sunset={sunset} setSunrise={setSunrise}
-                    setSunset={setSunset}/>
+                    setSunset={setSunset} sunriseSunsetData={sunriseSunsetData} setSunriseSunsetData={setSunriseSunsetData}/>
             <ToggleButton setMode={setMode} mode={mode}/>
         </main>
     </>

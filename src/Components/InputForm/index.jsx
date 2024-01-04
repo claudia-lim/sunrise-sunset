@@ -3,8 +3,8 @@ import {useState} from "react";
 function InputForm({input, setInput, fetchGeoLocation}) {
 
     function submitClick () {
+        console.log('click');
         fetchGeoLocation();
-
     }
 
     return (
