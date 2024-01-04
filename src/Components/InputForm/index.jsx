@@ -1,16 +1,16 @@
-function InputForm({input, setInput}) {
+function InputForm({input, setInput, fetchGeoLocation}) {
 
     function submitClick () {
-        console.log(input)
+        fetchGeoLocation();
     }
 
     return (
-        <>
+        <div>
             <input type="text" id="input" placeholder="Type in Location" value={input} onChange={(e) => {
                 setInput(e.target.value);
             }}></input>
             <button onClick={submitClick}>Submit</button>
-        </>
+        </div>
     )
 }
 
