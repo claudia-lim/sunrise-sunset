@@ -8,7 +8,7 @@ function InputForm({input, setInput, fetchGeoLocation}) {
     }
 
     return (
-        <div>
+        <div className="form">
             <input type="text" id="input" placeholder="Type in a City" value={input} onChange={(e) => {
                 setInput(e.target.value);
             }}></input>

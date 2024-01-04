@@ -1,3 +1,11 @@
+:root {
+  --day-colour1: #fdbb63;
+  --day-colour2: #eb6859;
+  --night-colour1: ;
+  --night-colour2: ;
+
+}
+
 body {
   margin: 0;
   display: flex;
@@ -9,6 +17,10 @@ body {
 
 main {
   padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
 
 h1 {
@@ -20,14 +32,38 @@ h1 {
   font-size: 6rem;
 }
 
-.day {
-  background-color: #e3bf45;
-  color: orangered;
+input {
+  padding: 1rem;
 }
 
+button {
+  padding: 1rem;
+}
+
+.form {
+  display: flex;
+  gap: 1rem;
+}
+
+.day {
+  background-color: var(--day-colour1);
+  color: var(--day-colour2);
+}
 
 .day .moon-icon {
   display: none;
+}
+
+.day input {
+  background-color: var(--day-colour2);
+  color: var(--day-colour1);
+  border: 1px solid white;
+}
+
+.day button {
+  background-color: var(--day-colour2);
+  color: var(--day-colour1);
+  border: 1px solid white;
 }
 
 .night {
