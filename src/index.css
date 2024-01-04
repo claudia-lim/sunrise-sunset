@@ -2,11 +2,40 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+main {
+  padding: 2rem;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+.icon {
+  font-size: 6rem;
+}
+
+.day {
+  background-color: #e3bf45;
+  color: orangered;
+}
+
+
+.day .moon-icon {
+  display: none;
+}
+
+.night {
+  background-color: #17175e;
+  color: #e3dfdf;
+}
+
+.night .sun-icon {
+  display: none;
+}
+
