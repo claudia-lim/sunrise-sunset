@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import './App.css'
 import InputForm from "./Components/InputForm/index.jsx";
 import Output from "./Components/Output/index.jsx";
@@ -6,9 +6,7 @@ import Output from "./Components/Output/index.jsx";
 function App() {
 
     const [input, setInput] = useState("");
-    const [geoLocJson, setGeoLocJson] = useState({})
-    const [latitude, setLatitude] = useState(0);
-    const [longitude, setLongitude] = useState(0);
+    const [geoLocJson, setGeoLocJson] = useState({initial:true})
 
     const key = "HQNofba0fy6MwKlkN0KGrlB2Hj88KqTM";
 
@@ -25,8 +23,6 @@ function App() {
         );
         const geoLocData = await response.json();
         setGeoLocJson(geoLocData);
-        setLatitude(geoLocJson.results[0].locations[0].latLng.lat)
-        setLongitude(geoLocJson.results[0].locations[0].latLng.lng)
     }
 
     return (
@@ -34,7 +30,7 @@ function App() {
       <div>
           <h1>Sunrise/Sunset Calculator</h1>
           <InputForm input={input} setInput={setInput} fetchGeoLocation={fetchGeoLocation}/>
-          <Output input={input} lat={latitude} lng={longitude}/>
+          <Output geoLocJson={geoLocJson}/>
       </div>
     </>
   )
