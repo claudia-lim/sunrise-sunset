@@ -9,9 +9,15 @@ import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
 function App() {
     const [input, setInput] = useState("");
     const [geoLocJson, setGeoLocJson] = useState({results: [{locations: [{latLng: {lat: 0, lng:0}, adminArea5: ""}]}]})
-    const [mode, setMode] = useState("day");
+    // const [mode, setMode] = useState("day");
     const [sunriseSunsetData, setSunriseSunsetData] = useState({results: {sunrise: "", sunset: ""}});
     const key = "HQNofba0fy6MwKlkN0KGrlB2Hj88KqTM";
+    const sunrise = sunriseSunsetData.results.sunrise;
+    const sunset = sunriseSunsetData.results.sunset;
+    const sunriseTime = new Date (sunrise);
+    const sunsetTime = new Date (sunset);
+    const currentTime = new Date();
+    let mode = "day";
 
     async function fetchGeoLocation () {
         const customSettings = {
@@ -24,12 +30,17 @@ function App() {
             `https://www.mapquestapi.com/geocoding/v1/address?key=${key}&location=${input}`,
             customSettings
         );
-        const geoLocData = await response.json();
-        setGeoLocJson(geoLocData);
+        if (response.status === 200) {
+            const geoLocData = await response.json();
+            setGeoLocJson(geoLocData);
+        }
     }
 
-    const sunrise = sunriseSunsetData.results.sunrise;
-    const sunset = sunriseSunsetData.results.sunset;
+    if (currentTime > sunriseTime && currentTime < sunsetTime) {
+        mode = "day";
+    } else if (currentTime < sunriseTime || currentTime > sunsetTime) {
+        mode = "night";
+    }
 
     return (
     <>
@@ -43,8 +54,8 @@ function App() {
             </div>
 
             <InputForm input={input} setInput={setInput} fetchGeoLocation={fetchGeoLocation}/>
-            <Output geoLocJson={geoLocJson} sunrise={sunrise} sunset={sunset} setSunriseSunsetData={setSunriseSunsetData}/>
-            <ToggleButton setMode={setMode} mode={mode}/>
+            <Output geoLocJson={geoLocJson} sunriseTime={sunriseTime} sunsetTime={sunsetTime} setSunriseSunsetData={setSunriseSunsetData} currentTime={currentTime}/>
+            {/*<ToggleButton setMode={setMode} mode={mode}/>*/}
         </main>
     </>
     )
