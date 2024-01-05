@@ -1,4 +1,4 @@
-import {useEffect, useState, React} from 'react'
+import {useState, React} from 'react'
 import './App.css'
 import InputForm from "./Components/InputForm/index.jsx";
 import Output from "./Components/Output/index.jsx";
@@ -7,14 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
 
 function App() {
-
     const [input, setInput] = useState("");
-    const [geoLocJson, setGeoLocJson] = useState({initial:true})
+    const [geoLocJson, setGeoLocJson] = useState({results: [{locations: [{latLng: {lat: 0, lng:0}, adminArea5: ""}]}]})
     const [mode, setMode] = useState("day");
-    const [sunrise, setSunrise] = useState("");
-    const [sunset, setSunset] = useState("");
-    const [sunriseSunsetData, setSunriseSunsetData] = useState({initial:true});
-    console.log('sunrise sunset data - rendering of app.jsx', sunriseSunsetData);
+    const [sunriseSunsetData, setSunriseSunsetData] = useState({results: {sunrise: "", sunset: ""}});
     const key = "HQNofba0fy6MwKlkN0KGrlB2Hj88KqTM";
 
     async function fetchGeoLocation () {
@@ -30,8 +26,10 @@ function App() {
         );
         const geoLocData = await response.json();
         setGeoLocJson(geoLocData);
-        console.log('geolocdata', geoLocData);
     }
+
+    const sunrise = sunriseSunsetData.results.sunrise;
+    const sunset = sunriseSunsetData.results.sunset;
 
     return (
     <>
@@ -45,8 +43,7 @@ function App() {
             </div>
 
             <InputForm input={input} setInput={setInput} fetchGeoLocation={fetchGeoLocation}/>
-            <Output geoLocJson={geoLocJson} sunrise={sunrise} sunset={sunset} setSunrise={setSunrise}
-                    setSunset={setSunset} sunriseSunsetData={sunriseSunsetData} setSunriseSunsetData={setSunriseSunsetData}/>
+            <Output geoLocJson={geoLocJson} sunrise={sunrise} sunset={sunset} setSunriseSunsetData={setSunriseSunsetData}/>
             <ToggleButton setMode={setMode} mode={mode}/>
         </main>
     </>
