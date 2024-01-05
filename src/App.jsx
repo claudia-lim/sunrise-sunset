@@ -5,11 +5,13 @@ import Output from "./Components/Output/index.jsx";
 import ToggleButton from "./Components/ToggleButton/index.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
+import CurrentLocationButton from "./CurrentLocationButton/index.jsx";
 
 function App() {
     const [input, setInput] = useState("");
     const [geoLocJson, setGeoLocJson] = useState({results: [{locations: [{latLng: {lat: 0, lng:0}, adminArea5: ""}]}]})
     // const [mode, setMode] = useState("day");
+
     const [sunriseSunsetData, setSunriseSunsetData] = useState({results: {sunrise: "", sunset: ""}});
     const key = "HQNofba0fy6MwKlkN0KGrlB2Hj88KqTM";
     const sunrise = sunriseSunsetData.results.sunrise;
@@ -52,10 +54,13 @@ function App() {
             <div className="moon-icon icon">
                 <FontAwesomeIcon icon={faMoon} />
             </div>
-
-            <InputForm input={input} setInput={setInput} fetchGeoLocation={fetchGeoLocation}/>
+            <div className="input">
+                <InputForm input={input} setInput={setInput} fetchGeoLocation={fetchGeoLocation}/>
+                <CurrentLocationButton setGeoLocJson={setGeoLocJson}/>
+            </div>
             <Output geoLocJson={geoLocJson} sunriseTime={sunriseTime} sunsetTime={sunsetTime} setSunriseSunsetData={setSunriseSunsetData} currentTime={currentTime}/>
             {/*<ToggleButton setMode={setMode} mode={mode}/>*/}
+
         </main>
     </>
     )

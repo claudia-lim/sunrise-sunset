@@ -1,9 +1,10 @@
 import {useEffect} from "react";
 
 function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, currentTime}) {
+
+    const city = geoLocJson.results[0].locations[0].adminArea5;
     const latitude = geoLocJson.results[0].locations[0].latLng.lat;
     const longitude = geoLocJson.results[0].locations[0].latLng.lng;
-    const city = geoLocJson.results[0].locations[0].adminArea5;
 
     function displayTime (time) {
         let converted = time.toString(["GMT"], {timeZoneName: "short"})
