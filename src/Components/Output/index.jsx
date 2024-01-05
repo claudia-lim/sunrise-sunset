@@ -1,11 +1,18 @@
 import {useEffect} from "react";
 
-function Output ({geoLocJson, sunrise, sunset, setSunriseSunsetData}) {
+function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, currentTime}) {
     const latitude = geoLocJson.results[0].locations[0].latLng.lat;
     const longitude = geoLocJson.results[0].locations[0].latLng.lng;
     const city = geoLocJson.results[0].locations[0].adminArea5;
-    const sunriseTime = new Date(sunrise);
-    const sunsetTime = new Date(sunset);
+
+    function displayTime (time) {
+        let converted = time.toString(["GMT"], {timeZoneName: "short"})
+        if (converted !== "Invalid Date") {
+            return converted;
+        } else {
+            return ""
+        }
+    }
 
     useEffect(() => {
         if (latitude || longitude) {
@@ -37,8 +44,9 @@ function Output ({geoLocJson, sunrise, sunset, setSunriseSunsetData}) {
             <p>{city}</p>
             <p>Latitude = {latitude}</p>
             <p>Longitude = {longitude}</p>
-            <p>Sunrise: {sunriseTime.toLocaleTimeString(["GMT"], {timeZoneName: "short"})}</p>
-            <p>Sunset: {sunsetTime.toLocaleTimeString(["GMT"], {timeZoneName: "short"})}</p>
+            <p>Sunrise: {displayTime(sunriseTime)}</p>
+            <p>Sunset: {displayTime(sunsetTime)}</p>
+            <p>Current time: {displayTime(currentTime)}</p>
         </div>
     )
 }
