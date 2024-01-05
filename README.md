@@ -28,6 +28,9 @@ and sunset times for that city.
 Things seemed to be going well but the main problems I encountered were some CORS errors when using the sunrise/sunset API - turns out it was an easy fix by removing incorrect options in my fetch request and adding in the correct origin header. Another issue I noted was that I was needing to double click on my submit button before the correct data was displaying - on investigation it was an issue with my useEffect processes.
 <h4>Day Two</h4>
 I was noticing that my components and useEffect functions were re-rendering or triggering off multiple times when I wasn't expecting them to. I realised that I didn't have the best grasp of using useEffect properly and this article in the React documentation was really useful in making me realise that I was over-using useEffect and useState (https://react.dev/learn/you-might-not-need-an-effect). Removing unnecessary useEffects and useStates made the code look much cleaner and possibly a bit faster as things weren't rendering over and over again unnecessarily.
+I managed to get this all working and then learnt how to use the geolocation property of the Navigator web API. Then added some styling including changing the display theme based on the sunrise and sunset times and was pretty happy that I'd met the requirements set out by the challenge!
+
+I'd like to try and get create the option of displaying the sunrise sunset times in the local time of the selected location as an added challenge.
 
 <h3>What I learned</h3>
-I am feeling more confident in understanding how the React components render and when - specifically how this works with useState and useEffect and knowing when you do or don't need to use them. 
+I am feeling more confident in understanding how the React components render and when - specifically how this works with useState and useEffect and knowing when you do or don't need to use them. I learned about the Navigator geolocation web API.
