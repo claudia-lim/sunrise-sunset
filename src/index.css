@@ -1,8 +1,12 @@
 :root {
+  --bg-colour1: #f6d8b0;
+  --bg-colour2: #bdd7f1;
   --day-colour1: #fdbb63;
   --day-colour2: #eb6859;
-  --night-colour1: ;
-  --night-colour2: ;
+  --day-colour3: #b44336;
+  --night-colour1: #b2d8fd;
+  --night-colour2: #25396c;
+  --night-colour3: #01111f;
 
 }
 
@@ -13,6 +17,7 @@ body {
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: linear-gradient(var(--bg-colour1), var(--bg-colour2));
 }
 
 main {
@@ -38,6 +43,17 @@ input {
 
 button {
   padding: 1rem;
+  border-radius: 1rem;
+}
+
+
+.input {
+  display: flex;
+  gap: 1rem;
+}
+
+*:focus {
+  outline: none;
 }
 
 .form {
@@ -47,7 +63,8 @@ button {
 
 .day {
   background-color: var(--day-colour1);
-  color: var(--day-colour2);
+  background-image: linear-gradient(var(--day-colour1), var(--day-colour2));
+  color: var(--day-colour3);
 }
 
 .day .moon-icon {
@@ -57,21 +74,42 @@ button {
 .day input {
   background-color: var(--day-colour2);
   color: var(--day-colour1);
-  border: 1px solid white;
+  border: 1px solid var(--day-colour1);
+}
+
+.day ::placeholder {
+  color: var(--day-colour1);
 }
 
 .day button {
   background-color: var(--day-colour2);
   color: var(--day-colour1);
-  border: 1px solid white;
+  border: 1px solid var(--day-colour1);
 }
 
 .night {
-  background-color: #17175e;
-  color: #e3dfdf;
+  background-image: linear-gradient(var(--night-colour3), var(--night-colour2));
+  color: var(--night-colour1);
 }
 
 .night .sun-icon {
   display: none;
+}
+
+
+.night input {
+  background-color: var(--night-colour2);
+  color: var(--night-colour1);
+  border: 1px solid var(--night-colour1);
+}
+
+.night ::placeholder {
+  color: var(--night-colour1);
+}
+
+.night button {
+  background-color: var(--night-colour2);
+  color: var(--night-colour1);
+  border: 1px solid var(--night-colour1);
 }
 

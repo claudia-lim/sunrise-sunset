@@ -5,7 +5,7 @@ import Output from "./Components/Output/index.jsx";
 import ToggleButton from "./Components/ToggleButton/index.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
-import CurrentLocationButton from "./CurrentLocationButton/index.jsx";
+import CurrentLocationButton from "./Components/CurrentLocationButton/index.jsx";
 
 function App() {
     const [input, setInput] = useState("");
