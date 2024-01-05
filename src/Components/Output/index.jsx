@@ -47,7 +47,7 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
             <p>Longitude = {longitude}</p>
             <p>Sunrise: {displayTime(sunriseTime)}</p>
             <p>Sunset: {displayTime(sunsetTime)}</p>
-            <p>Current time: {displayTime(currentTime)}</p>
+            <p>Your current time: {displayTime(currentTime)}</p>
         </div>
     )
 }

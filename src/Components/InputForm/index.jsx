@@ -2,6 +2,7 @@ function InputForm({input, setInput, fetchGeoLocation}) {
 
     function submitClick () {
         fetchGeoLocation();
+        setInput("");
     }
 
     return (

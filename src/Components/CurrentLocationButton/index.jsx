@@ -9,7 +9,7 @@ function CurrentLocationButton ({setGeoLocJson}) {
 
     return (
         <>
-            <button onClick={currentLocClick}>Use Current Location</button>
+            <button className="button" onClick={currentLocClick}>Use Current Location</button>
         </>
     )
 }
