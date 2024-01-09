@@ -62,6 +62,7 @@ function App() {
             {/*<ToggleButton setMode={setMode} mode={mode}/>*/}
 
         </main>
+        <footer>Claudia Lim 2024</footer>
     </>
     )
 }
