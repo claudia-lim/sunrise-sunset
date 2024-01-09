@@ -29,6 +29,8 @@ main {
 }
 
 footer {
+  display: flex;
+  flex-direction: column;
   color: var(--day-colour2);
   font-size: 0.5rem;
   text-align: center;

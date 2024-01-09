@@ -62,7 +62,11 @@ function App() {
             {/*<ToggleButton setMode={setMode} mode={mode}/>*/}
 
         </main>
-        <footer>Claudia Lim 2024</footer>
+        <footer>
+            Claudia Lim 2024
+            <a href="https://sunrise-sunset.org/api">Sunrise/Sunset API</a>
+            <a href="https://developer.mapquest.com/documentation/geocoding-api/">GeoCoding API</a>
+        </footer>
     </>
     )
 }
