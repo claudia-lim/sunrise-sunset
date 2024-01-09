@@ -25,7 +25,7 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
         const customSettings = {
             method: "GET",
             headers: {
-                "Origin": "http://localhost:5173"
+                "Origin": "https://2023-claudial.dev.io-academy.uk/"
             },
         };
         const response = await fetch(
