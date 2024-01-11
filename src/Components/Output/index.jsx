@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-import ChangeTimeButton from "../ChangeTimeButton/index.jsx";
+import ChangeDestTimeButton from "../ChangeDestTimeButton/index.jsx";
+import ChangeCurrentTimeZoneButton from "../ChangeCurrentTimeZoneButton/index.jsx";
 
 function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, currentTime}) {
 
@@ -7,12 +8,19 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
     const latitude = geoLocJson.results[0].locations[0].latLng.lat;
     const longitude = geoLocJson.results[0].locations[0].latLng.lng;
     const [timeZone, setTimeZone] = useState("Europe/London");
+    let currentLat;
+    let currentLng;
 
     function displayTime (time, timezone = 'Europe/London') {
-        let converted = time.toLocaleString('en-US',
-            { dateStyle: "medium",
-                timeZone: timezone,
-                timeStyle: "long" }
+        let converted = time.toLocaleString('en-GB',
+            {timeZone: timezone,
+                hour12: true,
+                weekday: "short",
+                month:"short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            timeZoneName: "shortGeneric" }
         )
         if (converted !== "Invalid Date") {
             return converted;
@@ -24,8 +32,27 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
     useEffect(() => {
         if (latitude || longitude) {
             fetchSunriseSunset();
+            fetchTimeZone(latitude, longitude);
         }
     }, [latitude, longitude]);
+
+    const timeZoneAPIKey = "UK9T0NQIMRAC";
+
+    async function fetchTimeZone(latitude, longitude) {
+        const customSettings = {
+            method: "GET",
+            headers: {
+                // "Content-Type": "application/json",
+                // "Access-Control-Allow-Origin": "*"
+            },
+        };
+        const response = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIKey}&by=position&lat=${latitude}&lng=${longitude}&format=json`, customSettings);
+        const timeZoneJson = await response.json();
+        if (timeZoneJson.status === "OK") {
+            setTimeZone(timeZoneJson.zoneName);
+        }
+
+    }
 
     async function fetchSunriseSunset () {
         const customSettings = {
@@ -55,16 +82,12 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
             <p>Sunset: {displayTime(sunsetTime, timeZone)}</p>
             <p>Current time: {displayTime(currentTime, timeZone)}</p>
             <div className="change-tz-button">
-                <ChangeTimeButton
-                    setTimeZone={setTimeZone}
-                    buttonText="Convert to Destination Time Zone"
+                <ChangeDestTimeButton
                     latitude={latitude}
-                    longitude={longitude}/>
-                <ChangeTimeButton
-                    setTimeZone={setTimeZone}
-                    buttonText="Convert to GMT"
-                    latitude="51.477928"
-                    longitude="-0.001545"/>
+                    longitude={longitude}
+                    fetchTimeZone={fetchTimeZone}/>
+                <ChangeCurrentTimeZoneButton fetchTimeZone={fetchTimeZone} />
+
             </div>
 
         </div>
