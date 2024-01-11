@@ -21,9 +21,12 @@ and sunset times for that city.
 
 <h2>My Process</h2>
 <h3>Stack</h3>
-- React
-- Javascript
-- APIs: https://developer.mapquest.com and https://sunrise-sunset.org/api
+<ul>
+<li>React</li>
+<li>Javascript</li>
+<li>APIs: https://developer.mapquest.com, https://sunrise-sunset.org/api and https://timezonedb.com/ </li>
+</ul>
+
 <h3>Development Diary</h3>
 <h4>Day One</h4>
 Things seemed to be going well but the main problems I encountered were some CORS errors when using the sunrise/sunset API - turns out it was an easy fix by removing incorrect options in my fetch request and adding in the correct origin header. Another issue I noted was that I was needing to double click on my submit button before the correct data was displaying - on investigation it was an issue with my useEffect processes.
