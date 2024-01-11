@@ -8,8 +8,6 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
     const latitude = geoLocJson.results[0].locations[0].latLng.lat;
     const longitude = geoLocJson.results[0].locations[0].latLng.lng;
     const [timeZone, setTimeZone] = useState("Europe/London");
-    let currentLat;
-    let currentLng;
 
     function displayTime (time, timezone = 'Europe/London') {
         let converted = time.toLocaleString('en-GB',
@@ -51,7 +49,6 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
         if (timeZoneJson.status === "OK") {
             setTimeZone(timeZoneJson.zoneName);
         }
-
     }
 
     async function fetchSunriseSunset () {

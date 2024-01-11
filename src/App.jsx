@@ -62,8 +62,8 @@ function App() {
                 setSunriseSunsetData={setSunriseSunsetData}
                 currentTime={currentTime}/>
         </main>
-        <footer>
-            Claudia Lim 2024
+        <footer id="footer" className={mode}>
+            <h3>Claudia Lim 2024</h3>
             <a href="https://sunrise-sunset.org/api">Sunrise/Sunset API</a>
             <a href="https://developer.mapquest.com/documentation/geocoding-api/">GeoCoding API</a>
             <a href="https://timezonedb.com/">Time Zone Database API</a>

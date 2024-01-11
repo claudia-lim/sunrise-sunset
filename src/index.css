@@ -28,15 +28,6 @@ main {
   flex-direction: column;
 }
 
-footer {
-  display: flex;
-  flex-direction: column;
-  color: var(--day-colour2);
-  font-size: 0.5rem;
-  text-align: center;
-  padding: 0.5rem;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -71,7 +62,7 @@ button {
 }
 
 .day {
-  background-color: var(--day-colour1);
+  /*background-color: var(--day-colour1);*/
   background-image: linear-gradient(var(--day-colour1), var(--day-colour2));
   color: var(--day-colour3);
 }
@@ -120,5 +111,58 @@ button {
   background-color: var(--night-colour2);
   color: var(--night-colour1);
   border: 1px solid var(--night-colour1);
+}
+
+.change-tz-button {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: fit-content;
+  justify-content: center;
+  align-content: center;
+  font-size: 0.5rem;
+  text-align: center;
+  padding: 0.5rem;
+  background-image: none;
+}
+
+a {
+  padding: 0.25rem;
+}
+
+.day h3 {
+  color: var(--day-colour2);
+}
+
+.night h3 {
+  color: var(--night-colour2);
+}
+
+.day a {
+  color: var(--day-colour2);
+}
+
+.day a:hover {
+  background-color: var(--day-colour3);
+  color: var(--day-colour1);
+}
+
+.day a:visited {
+  color: var(--day-colour2);
+}
+
+.night a, a:visited {
+  color: var(--night-colour2);
+}
+
+.night a:hover {
+  background-color: var(--night-colour3);
+  color: var(--night-colour1);
 }
 

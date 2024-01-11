@@ -5,7 +5,7 @@ function ChangeDestTimeButton ({latitude, longitude, fetchTimeZone}) {
         fetchTimeZone(latitude, longitude);
     }
     return <>
-        <button onClick={handleClick}>Convert to destination time zone</button>
+        <button onClick={handleClick}>Change to destination time zone</button>
     </>
 }
 
