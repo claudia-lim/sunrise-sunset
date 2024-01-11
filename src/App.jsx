@@ -56,7 +56,7 @@ function App() {
             </div>
             <div className="input">
                 <InputForm input={input} setInput={setInput} fetchGeoLocation={fetchGeoLocation}/>
-                <CurrentLocationButton setGeoLocJson={setGeoLocJson}/>
+                <CurrentLocationButton setGeoLocJson={setGeoLocJson} apiKey={key}/>
             </div>
             <Output geoLocJson={geoLocJson} sunriseTime={sunriseTime} sunsetTime={sunsetTime} setSunriseSunsetData={setSunriseSunsetData} currentTime={currentTime}/>
             {/*<ToggleButton setMode={setMode} mode={mode}/>*/}
