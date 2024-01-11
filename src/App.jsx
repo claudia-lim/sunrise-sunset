@@ -2,7 +2,6 @@ import {useState, React} from 'react'
 import './App.css'
 import InputForm from "./Components/InputForm/index.jsx";
 import Output from "./Components/Output/index.jsx";
-import ToggleButton from "./Components/ToggleButton/index.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
 import CurrentLocationButton from "./Components/CurrentLocationButton/index.jsx";
@@ -10,8 +9,6 @@ import CurrentLocationButton from "./Components/CurrentLocationButton/index.jsx"
 function App() {
     const [input, setInput] = useState("");
     const [geoLocJson, setGeoLocJson] = useState({results: [{locations: [{latLng: {lat: 0, lng:0}, adminArea5: ""}]}]})
-    // const [mode, setMode] = useState("day");
-
     const [sunriseSunsetData, setSunriseSunsetData] = useState({results: {sunrise: "", sunset: ""}});
     const key = "HQNofba0fy6MwKlkN0KGrlB2Hj88KqTM";
     const sunrise = sunriseSunsetData.results.sunrise;
@@ -58,14 +55,18 @@ function App() {
                 <InputForm input={input} setInput={setInput} fetchGeoLocation={fetchGeoLocation}/>
                 <CurrentLocationButton setGeoLocJson={setGeoLocJson} apiKey={key}/>
             </div>
-            <Output geoLocJson={geoLocJson} sunriseTime={sunriseTime} sunsetTime={sunsetTime} setSunriseSunsetData={setSunriseSunsetData} currentTime={currentTime}/>
-            {/*<ToggleButton setMode={setMode} mode={mode}/>*/}
-
+            <Output
+                geoLocJson={geoLocJson}
+                sunriseTime={sunriseTime}
+                sunsetTime={sunsetTime}
+                setSunriseSunsetData={setSunriseSunsetData}
+                currentTime={currentTime}/>
         </main>
         <footer>
             Claudia Lim 2024
             <a href="https://sunrise-sunset.org/api">Sunrise/Sunset API</a>
             <a href="https://developer.mapquest.com/documentation/geocoding-api/">GeoCoding API</a>
+            <a href="https://timezonedb.com/">Time Zone Database API</a>
         </footer>
     </>
     )
