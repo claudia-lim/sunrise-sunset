@@ -30,8 +30,12 @@ Things seemed to be going well but the main problems I encountered were some COR
 <h4>Day Two</h4>
 I was noticing that my components and useEffect functions were re-rendering or triggering off multiple times when I wasn't expecting them to. I realised that I didn't have the best grasp of using useEffect properly and this article in the React documentation was really useful in making me realise that I was over-using useEffect and useState (https://react.dev/learn/you-might-not-need-an-effect). Removing unnecessary useEffects and useStates made the code look much cleaner and possibly a bit faster as things weren't rendering over and over again unnecessarily.
 I managed to get this all working and then learnt how to use the geolocation property of the Navigator web API. Then added some styling including changing the display theme based on the sunrise and sunset times and was pretty happy that I'd met the requirements set out by the challenge!
-
-I'd like to try and get create the option of displaying the sunrise sunset times in the local time of the selected location as an added challenge.
+<h4>Day Three</h4>
+My next goals were to change the display of the time in different time zones - either the local time zone of the destination entered or the local time zone of the user.
+I also wanted to display the current city the use was in if they selected the 'use current location' button.
+Getting the user's city was easily done using the reverse location functionality of the GeoCoding API as I already had the latitude and longitude coordinates.
+I had to find another API to help find the time zones using the coordinates and used https://timezonedb.com/ to do this.
+Overall quite a straightforward addition to the app and it certainly makes me feel more comfortable interacting with APIs.
 
 <h3>What I learned</h3>
 I am feeling more confident in understanding how the React components render and when - specifically how this works with useState and useEffect and knowing when you do or don't need to use them. I learned about the Navigator geolocation web API.
