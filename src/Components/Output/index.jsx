@@ -84,9 +84,7 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
                     longitude={longitude}
                     fetchTimeZone={fetchTimeZone}/>
                 <ChangeCurrentTimeZoneButton fetchTimeZone={fetchTimeZone} />
-
             </div>
-
         </div>
     )
 }
