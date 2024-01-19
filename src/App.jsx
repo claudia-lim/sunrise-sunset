@@ -46,21 +46,24 @@ function App() {
         <main className={mode}>
             <h1>Sunrise/Sunset Calculator</h1>
             <div className="sun-icon icon">
-                <FontAwesomeIcon icon={faSun} />
+                <FontAwesomeIcon icon={faSun}/>
             </div>
             <div className="moon-icon icon">
-                <FontAwesomeIcon icon={faMoon} />
+                <FontAwesomeIcon icon={faMoon}/>
             </div>
             <div className="input">
                 <InputForm input={input} setInput={setInput} fetchGeoLocation={fetchGeoLocation}/>
                 <CurrentLocationButton setGeoLocJson={setGeoLocJson} apiKey={key}/>
             </div>
-            <Output
-                geoLocJson={geoLocJson}
-                sunriseTime={sunriseTime}
-                sunsetTime={sunsetTime}
-                setSunriseSunsetData={setSunriseSunsetData}
-                currentTime={currentTime}/>
+            <div>
+                <Output
+                    geoLocJson={geoLocJson}
+                    sunriseTime={sunriseTime}
+                    sunsetTime={sunsetTime}
+                    setSunriseSunsetData={setSunriseSunsetData}
+                    currentTime={currentTime}
+                />
+            </div>
         </main>
         <footer id="footer" className={mode}>
             <h3>Claudia Lim 2024</h3>

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import ChangeDestTimeButton from "../ChangeDestTimeButton/index.jsx";
 import ChangeCurrentTimeZoneButton from "../ChangeCurrentTimeZoneButton/index.jsx";
+import ClockFace from "../ClockFace/index.jsx";
 
 function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, currentTime}) {
 
@@ -15,10 +16,11 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
                 hour12: true,
                 weekday: "short",
                 month:"short",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            timeZoneName: "shortGeneric" }
+                day: "numeric",
+                // hour: "numeric",
+                // minute: "numeric",
+                // timeZoneName: "shortGeneric"
+            }
         )
         if (converted !== "Invalid Date") {
             return converted;
@@ -26,6 +28,7 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
             return ""
         }
     }
+
 
     useEffect(() => {
         if (latitude || longitude) {
@@ -44,7 +47,7 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
                 // "Access-Control-Allow-Origin": "*"
             },
         };
-        const response = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIKey}&by=position&lat=${latitude}&lng=${longitude}&format=json`, customSettings);
+        const response = await fetch(`https://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIKey}&by=position&lat=${latitude}&lng=${longitude}&format=json`, customSettings);
         const timeZoneJson = await response.json();
         if (timeZoneJson.status === "OK") {
             setTimeZone(timeZoneJson.zoneName);
@@ -71,19 +74,40 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
     }
 
     return (
-        <div>
-            <p>City: {city ? city : "No city entered"}</p>
-            <p>Latitude: {latitude}</p>
-            <p>Longitude: {longitude}</p>
-            <p>Sunrise: {displayTime(sunriseTime, timeZone)}</p>
-            <p>Sunset: {displayTime(sunsetTime, timeZone)}</p>
-            <p>Current time: {displayTime(currentTime, timeZone)}</p>
+        <div className="output">
+            <div className="input-data-display">
+                <h2>{city ? city : "No city entered"}</h2>
+                <p>Latitude: {latitude}</p>
+                <p>Longitude: {longitude}</p>
+            </div>
+            <h4>Time zone: {timeZone}</h4>
+            <div className="clock-faces">
+
+                <div className="display-time">
+                    <h2>Sunrise</h2>
+                    <p>{displayTime(sunriseTime, timeZone)}</p>
+                    <ClockFace time={sunriseTime} timeZone={timeZone}/>
+                </div>
+
+                <div className="display-time">
+                    <h2>Sunset</h2>
+                    <p>{displayTime(sunsetTime, timeZone)}</p>
+                    <ClockFace time={sunsetTime} timeZone={timeZone}/>
+                </div>
+
+                <div className="display-time">
+                    <h2>Current Time</h2>
+                    <p>{displayTime(currentTime, timeZone)}</p>
+                    <ClockFace time={currentTime} timeZone={timeZone}/>
+                </div>
+            </div>
             <div className="change-tz-button">
                 <ChangeDestTimeButton
                     latitude={latitude}
                     longitude={longitude}
                     fetchTimeZone={fetchTimeZone}/>
-                <ChangeCurrentTimeZoneButton fetchTimeZone={fetchTimeZone} />
+                <ChangeCurrentTimeZoneButton
+                    fetchTimeZone={fetchTimeZone}/>
             </div>
         </div>
     )

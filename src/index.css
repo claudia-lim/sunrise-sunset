@@ -7,7 +7,6 @@
   --night-colour1: #b2d8fd;
   --night-colour2: #25396c;
   --night-colour3: #01111f;
-
 }
 
 body {
@@ -15,9 +14,9 @@ body {
   display: flex;
   place-items: center;
   justify-content: center;
-  min-width: 320px;
   min-height: 100vh;
   background-image: linear-gradient(var(--bg-colour1), var(--bg-colour2));
+  font-family: "American Typewriter";
 }
 
 main {
@@ -26,6 +25,7 @@ main {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  width: 75vw;
 }
 
 h1 {
@@ -39,11 +39,14 @@ h1 {
 
 input {
   padding: 1rem;
+  font-family: "American Typewriter";
 }
 
 button {
   padding: 1rem;
   border-radius: 1rem;
+  cursor: pointer;
+  font-family: "American Typewriter";
 }
 
 
@@ -113,25 +116,6 @@ button {
   border: 1px solid var(--night-colour1);
 }
 
-.change-tz-button {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.25rem;
-}
-
-#footer {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  width: fit-content;
-  justify-content: center;
-  align-content: center;
-  font-size: 0.5rem;
-  text-align: center;
-  padding: 0.5rem;
-  background-image: none;
-}
-
 a {
   padding: 0.25rem;
 }
@@ -166,3 +150,61 @@ a {
   color: var(--night-colour1);
 }
 
+.output {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.input-data-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  margin: 0;
+}
+
+.clock-faces {
+  display: grid;
+  width: 80vw;
+  grid-template-columns: 33% 33% 33%;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+}
+
+.display-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.change-tz-button {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  justify-self: center;
+  margin: 1rem;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: fit-content;
+  justify-content: center;
+  align-content: center;
+  font-size: 0.5rem;
+  text-align: center;
+  padding: 0.5rem;
+  background-image: none;
+}
