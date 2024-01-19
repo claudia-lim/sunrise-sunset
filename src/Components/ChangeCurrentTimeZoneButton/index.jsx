@@ -1,4 +1,4 @@
-function ChangeCurrentTimeZoneButton ({fetchTimeZone}) {
+function ChangeCurrentTimeZoneButton ({fetchTimeZone, setUsingCurrentLocationTimeZone}) {
 
     let currLatitude = 0;
     let currLongitude = 0;
@@ -9,6 +9,7 @@ function ChangeCurrentTimeZoneButton ({fetchTimeZone}) {
     }
     function handleClick () {
         navigator.geolocation.getCurrentPosition(getCoords);
+        setUsingCurrentLocationTimeZone(true);
         fetchTimeZone(currLatitude, currLongitude);
     }
     return <>

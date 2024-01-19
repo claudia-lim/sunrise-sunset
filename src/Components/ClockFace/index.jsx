@@ -4,7 +4,7 @@ function ClockFace ({time, timeZone}) {
 
     function displayClockFace (time, timezone='Europe/London') {
         if (time == "Invalid Date") {
-            console.log("invalid date error handler")
+            // console.log("invalid date error handler")
             return;
         }
         let converted = time.toLocaleString('en-GB',

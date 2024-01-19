@@ -17,8 +17,10 @@ function App() {
     const sunsetTime = new Date (sunset);
     const currentTime = new Date();
     let mode = "day";
-
+    const [usingCurrentLocationTimeZone, setUsingCurrentLocationTimeZone] = useState(false);
+console.log('currentlocation?', usingCurrentLocationTimeZone);
     async function fetchGeoLocation () {
+        setUsingCurrentLocationTimeZone(false);
         const customSettings = {
             method: "GET",
             headers: {
@@ -62,6 +64,8 @@ function App() {
                     sunsetTime={sunsetTime}
                     setSunriseSunsetData={setSunriseSunsetData}
                     currentTime={currentTime}
+                    usingCurrentLocationTimeZone={usingCurrentLocationTimeZone}
+                    setUsingCurrentLocationTimeZone={setUsingCurrentLocationTimeZone}
                 />
             </div>
         </main>

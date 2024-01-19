@@ -3,7 +3,7 @@ import ChangeDestTimeButton from "../ChangeDestTimeButton/index.jsx";
 import ChangeCurrentTimeZoneButton from "../ChangeCurrentTimeZoneButton/index.jsx";
 import ClockFace from "../ClockFace/index.jsx";
 
-function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, currentTime}) {
+function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, currentTime, usingCurrentLocationTimeZone, setUsingCurrentLocationTimeZone}) {
 
     const city = geoLocJson.results[0].locations[0].adminArea5;
     const latitude = geoLocJson.results[0].locations[0].latLng.lat;
@@ -80,7 +80,6 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
                 <p>Latitude: {latitude}</p>
                 <p>Longitude: {longitude}</p>
             </div>
-            <h4>Time zone: {timeZone}</h4>
             <div className="clock-faces">
 
                 <div className="display-time">
@@ -102,12 +101,19 @@ function Output ({geoLocJson, sunriseTime, sunsetTime, setSunriseSunsetData, cur
                 </div>
             </div>
             <div className="change-tz-button">
-                <ChangeDestTimeButton
-                    latitude={latitude}
-                    longitude={longitude}
-                    fetchTimeZone={fetchTimeZone}/>
-                <ChangeCurrentTimeZoneButton
-                    fetchTimeZone={fetchTimeZone}/>
+                <h4>Time zone: {timeZone}</h4>
+                <div style={usingCurrentLocationTimeZone ? {} : {display: "none"}}>
+                    <ChangeDestTimeButton
+                        latitude={latitude}
+                        longitude={longitude}
+                        fetchTimeZone={fetchTimeZone}
+                        setUsingCurrentLocationTimeZone={setUsingCurrentLocationTimeZone}/>
+                </div>
+                <div style={usingCurrentLocationTimeZone ? {display: "none"} : {}}>
+                    <ChangeCurrentTimeZoneButton
+                        fetchTimeZone={fetchTimeZone}
+                        setUsingCurrentLocationTimeZone={setUsingCurrentLocationTimeZone}/>
+                </div>
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
-function ChangeDestTimeButton ({latitude, longitude, fetchTimeZone}) {
+function ChangeDestTimeButton ({latitude, longitude, fetchTimeZone, setUsingCurrentLocationTimeZone}) {
 
     function handleClick () {
-
+        setUsingCurrentLocationTimeZone(false);
         fetchTimeZone(latitude, longitude);
     }
     return <>
