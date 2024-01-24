@@ -16,7 +16,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   background-image: linear-gradient(var(--bg-colour1), var(--bg-colour2));
-  font-family: "American Typewriter";
+  font-family: "American Typewriter", sans-serif;
 }
 
 main {
@@ -207,4 +207,23 @@ p {
   text-align: center;
   padding: 0.5rem;
   background-image: none;
+}
+
+@media screen and (max-width: 500px) {
+  .input {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  main {
+    width: auto;
+  }
 }

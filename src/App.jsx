@@ -10,6 +10,7 @@ function App() {
     const [input, setInput] = useState("");
     const [geoLocJson, setGeoLocJson] = useState({results: [{locations: [{latLng: {lat: 0, lng:0}, adminArea5: ""}]}]})
     const [sunriseSunsetData, setSunriseSunsetData] = useState({results: {sunrise: "", sunset: ""}});
+    const [usingCurrentLocationTimeZone, setUsingCurrentLocationTimeZone] = useState(false);
     const key = "HQNofba0fy6MwKlkN0KGrlB2Hj88KqTM";
     const sunrise = sunriseSunsetData.results.sunrise;
     const sunset = sunriseSunsetData.results.sunset;
@@ -17,8 +18,6 @@ function App() {
     const sunsetTime = new Date (sunset);
     const currentTime = new Date();
     let mode = "day";
-    const [usingCurrentLocationTimeZone, setUsingCurrentLocationTimeZone] = useState(false);
-console.log('currentlocation?', usingCurrentLocationTimeZone);
     async function fetchGeoLocation () {
         setUsingCurrentLocationTimeZone(false);
         const customSettings = {
